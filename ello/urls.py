@@ -18,6 +18,7 @@ urlpatterns = [
 
 
     path('hotal_view/<int:id>', views.hotal_view, name="hotal_view"),
+    path('offers_for_you',views.offers_for_you, name="offers_for_you"),
 
     path('logout', views.logoutuser, name="handleLogout"),
     path("add_hotel", views.add_hotel, name='add-hotel.html'),

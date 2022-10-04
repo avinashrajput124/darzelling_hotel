@@ -33,10 +33,10 @@ class Add_Hotal(models.Model):
     # Hotal_Location = SpatialLocationField(null=True)
     # hotel images
     Hotal_images1 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    Hotal_images2 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    Hotal_images3 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    Hotal_images4= models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    Hotal_images5 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
+    # Hotal_images2 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
+    # Hotal_images3 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
+    # Hotal_images4= models.ImageField(upload_to='hotalmedia', null=True, blank=True)
+    # Hotal_images5 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
     # garden images
     garden_images1 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
     garden_images2 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)

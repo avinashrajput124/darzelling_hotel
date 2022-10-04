@@ -52,13 +52,13 @@
                                                     <div class="col-lg-4 col-md-12">
                                                       <div class="form-group"> 
                                                         <label for="Latitude">Latitude</label>
-                                                        <input type="text" class="form-control" id="lat" name="lat" placeholder="Latitude">
+                                                        <input type="number" class="form-control" id="lat" name="lat" placeholder="Latitude">
                                                       </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-12">                
                                                       <div class="form-group">
                                                         <label for="Longitude">Longitude</label>
-                                                        <input type="text" class="form-control" id="long" name="long" placeholder="Longitude">
+                                                        <input type="number" class="form-control" id="long" name="long" placeholder="Longitude">
                                                       </div>
                                                     </div>
                                                 </div>
@@ -66,21 +66,37 @@
 
 
                                            
-                                        <div class="row mb-4">
-                                            <label class=" col-md-3 form-label">Price :</label>
-                                                <select  name="newprice" style="font-size: 100%;height: calc(1.8125rem + 8px);"class=" col-md-4 form-select form-select-sm"  aria-label=".form-select-sm example">
-                                                    <option selected>Select Option</option>
-                                                    <option>Premium</option>
-                                                    <option >Deluxe</option>
-                          
-                                                  </select>                                           
+                                        <div class="row mb-4  ">
+                                            <label class="col-md-3 form-label" name="newprice">Price :</label>
+                                            <div class="col-md-4  form-control">
+                                                <label class="form-label" name="newprice">Deluxe :</label>
+                                                <input  class="form-control" name="new_price" type="number" placeholder="Enter Deluxe Price">
+                                          
+                                          <div>
+                                        
+                                                <label class="form-label" name="newprice">Premium :</label>
+                                                <input class="form-control"  name="new_price" placeholder="Enter Premium Price"  type="number">
+                                            </div>
+
+
+
+                                            <!-- <div class="col-md-5">
+                                            <label class="col-md-3 form-label" name="newprice">Deluxe :</label>
+                                            <label class="col-md-5 form-label" name="newprice">Premium :</label>
+
+                                             
+                                            <div class="col-md-3">
+                                                  <input type="location" name="loc" id="loc" class="col-md-4 form-control" placeholder="Location/location link..">
+                                               
+                                             </div>
+                                            </div> -->
                                            
                                         </div>
                                         
                                        
                                        
                                         
-                                        <div class="row mb-4">
+                                        <div class="row mb-4 mt-4">
                                             <label class="col-md-3 form-label">Hotel Description :</label>
                                             <div class="col-md-9">
                                                 <textarea  type="textarea" name="dec" id="dec" required class="form-control"  placeholder="About Hotel..."></textarea>
@@ -89,12 +105,12 @@
 
                                         <!--Row-->
                                         <div class="row">
-                                            <label class="col-md-3 form-label mb-4"> Upload Images :</label>
+                                            <label class="col-md-3 form-label mb-4"> Banner Images :</label>
                                             
                                             <div class="col-md-3">
                                                 <input type="file"  id="img1" name="img1" required>
                                             </div>
-                                            <div class="col-md-3">
+                                            <!-- <div class="col-md-3">
                                                 <input type="file"  id="img2" name="img2">
                                             </div>
                                             <div class="col-md-3">
@@ -105,7 +121,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <input type="file"  id="img5" name="img5">
-                                            </div>
+                                            </div> -->
                                         </div><br>
                                         <!--End Row-->
  <!--Row-->
@@ -131,7 +147,7 @@
                                         <!--End Row-->
                                          <!--Row-->
 
-                                        <div class="row">
+                                        <div class="row mt-4">
                                             <label class="col-md-3 form-label mb-4"> Bedroom Images :</label>
                                             
                                             <div class="col-md-3">
@@ -153,7 +169,7 @@
                                         <!--End Row-->
 
                                         <!--Row-->
-                                        <div class="row">
+                                        <div class="row mt-4">
                                             <label class="col-md-3 form-label mb-4"> Washroom Images :</label>
                                             
                                             <div class="col-md-3">
@@ -174,7 +190,7 @@
                                         </div><br>
                                         <!--End Row-->
                                              <!--Row-->
-                                             <div class="row">
+                                             <div class="row mt-4">
                                                 <label class="col-md-3 form-label mb-4"> Exterior Images :</label>
                                                 
                                                 <div class="col-md-3">
@@ -197,7 +213,7 @@
                                             <!---->
 
                                                  <!--Row-->
-                                        <div class="row">
+                                        <div class="row mt-4">
                                             <label class="col-md-3 form-label mb-4"> Garden Images :</label>
                                             
                                             <div class="col-md-3">

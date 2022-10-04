@@ -264,10 +264,10 @@ def add_hotel(request):
               Hotal_Latitude = request.POST.get('lat')
               Hotal_Longitude = request.POST.get('long')
               Hotal_images1 = request.FILES.get('img1')
-              Hotal_images2 = request.FILES.get('img2')
-              Hotal_images3 = request.FILES.get('img3')
-              Hotal_images4= request.FILES.get('img4')
-              Hotal_images5 = request.FILES.get('img5')
+              # Hotal_images2 = request.FILES.get('img2')
+              # Hotal_images3 = request.FILES.get('img3')
+              # Hotal_images4= request.FILES.get('img4')
+              # Hotal_images5 = request.FILES.get('img5')
               # recettion images
               reception_images1 = request.FILES.get('reception_images1')
               reception_images2 = request.FILES.get('reception_images2')
@@ -301,8 +301,8 @@ def add_hotel(request):
               date = request.POST.get('datetime.today()')
 
               data = Add_Hotal(Hotal_Name=Hotal_Name, hotal_new_price=hotal_new_price,
-              hotal_discreption = hotal_discreption, Hotal_Location=Hotal_Location, Hotal_Latitude=Hotal_Latitude, Hotal_Longitude=Hotal_Longitude, Hotal_images1=Hotal_images1, Hotal_images2=Hotal_images2,
-              Hotal_images3=Hotal_images3, Hotal_images4=Hotal_images4, Hotal_images5=Hotal_images5, date=date,
+              hotal_discreption = hotal_discreption, Hotal_Location=Hotal_Location, Hotal_Latitude=Hotal_Latitude, Hotal_Longitude=Hotal_Longitude, Hotal_images1=Hotal_images1,
+               date=date,
               reception_images1=reception_images1,reception_images2=reception_images2,reception_images3=reception_images3,reception_images4=reception_images4,reception_images5=reception_images5,
               bedroom_images1=bedroom_images1,bedroom_images2=bedroom_images2,bedroom_images3=bedroom_images3,bedroom_images4=bedroom_images4,bedroom_images5=bedroom_images5,
               washroom_images1=washroom_images1,washroom_images2=washroom_images2,washroom_images3=washroom_images3,washroom_images4=washroom_images4,washroom_images5=washroom_images5,
@@ -390,5 +390,14 @@ def edit_hotal(request, id):
            return render(request, 'update_hotal.html') 
        return render(request, "update_hotal.html")
 
+
+def offers_for_you(request):
+       return render(request,'offers_for_you.html')
+
+def promotions(request):
+       return render(request,'offers_for_you.html')
+
+def offers_for_you(request):
+       return render(request,'offers_for_you.html')
 
 
