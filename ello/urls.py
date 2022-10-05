@@ -1,5 +1,5 @@
 from django.urls import path
-from ello import views
+from ello import views,ApiViews
 
  
 
@@ -19,12 +19,20 @@ urlpatterns = [
 
     path('hotal_view/<int:id>', views.hotal_view, name="hotal_view"),
     path('offers_for_you',views.offers_for_you, name="offers_for_you"),
+    path('promotions',views.promotions, name="promotions"),
+    path('exclusive_partners',views.exclusive_partners, name="exclusive_partners"),
+    path('holiday_packages',views.holiday_packages, name="holiday_packages"),
 
     path('logout', views.logoutuser, name="handleLogout"),
     path("add_hotel", views.add_hotel, name='add-hotel.html'),
     path("hotel_list/", views.hotel_list, name='hotel-list'),
     path("hotel_list_filter/", views.hotel_list_filter, name='hotel_list_filter'),
     path("forgot-password", views.forgot_password, name='forgot-password.html'),
+
+
+
+    # api urls
+    path("hotel",ApiViews.hotel,name='hotel')
 
 
 

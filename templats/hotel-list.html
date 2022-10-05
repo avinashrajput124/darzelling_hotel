@@ -3,6 +3,14 @@
 
 {% block title%} Hotel List{% endblock title %}
 
+<style>
+
+#quickview{
+
+    width:120%;
+}
+</style>
+
  
 {% block body %}
             <!--app-content open-->
@@ -189,9 +197,9 @@
                                                                     <input type="submit" class="btn btn-primary mb-1" value="Edit">
                                                                 </form>
                                                             </div>
-                                                            <div class="col-xs-6 col-md-6">
+                                                            <div id="quickview" class="col-xs-6 col-md-6">
                                                                 <form action="{% url 'hotal_view' i.Hotal_id %}" method="post">{% csrf_token %}
-                                                                    <input type="submit" class="btn btn-primary mb-1" value="Quick View">
+                                                                    <input type="submit"  class="btn btn-primary mb-1" value="Quick View">
                                                                 </form>
                                                             </div>
                                                         </div>

@@ -393,11 +393,9 @@ def edit_hotal(request, id):
 
 def offers_for_you(request):
        return render(request,'offers_for_you.html')
-
+def holiday_packages(request):
+       return render(request,'holiday_packages.html')
 def promotions(request):
-       return render(request,'offers_for_you.html')
-
-def offers_for_you(request):
-       return render(request,'offers_for_you.html')
-
-
+       return render(request,'promotions.html')
+def exclusive_partners(request):
+       return render(request,'exclusive_partners.html')
