@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+
+{% block title%}Hotal Review{% endblock title %}
+
+
+{% block body %}
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap");
+
+
+
+img {
+  width: 50%;
+  display: block;
+  min-height: 60%;
+}
+.img-display {
+  overflow: hidden;
+}
+.img-showcase {
+  display: flex;
+  width: 100%;
+  transition: all 0.5s ease;
+}
+.img-showcase img {
+  min-width: 100%;
+  /* height: 100%; */
+}
+.img-select {
+  display: flex;
+}
+.img-item {
+  margin: 0.3rem;
+}
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3) {
+  margin-right: 0;
+}
+.product-detail ul li {
+  margin: 0;
+  list-style: none;
+  background: url(https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/checked.png)
+    left center no-repeat;
+  background-size: 18px;
+  padding-left: 1.7rem;
+  margin: 0.4rem 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+@media screen and (min-width: 992px) {
+  .card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+  }
+  .card-wrapper {
+    height: 88vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card{
+    width:81%;
+  }
+}
+
+</style>
+
+<section> 
+  <!--app-content open-->
+  <div class="main-content app-content mt-0">
+    <div class="side-app">
+
+        <!-- CONTAINER -->
+        <div class="main-container container-fluid">
+    <div class = "card-wrapper">
+        <div class = "card" >
+          <!-- card left -->
+          <div class = "product-imgs">
+            <div class = "img-display">
+              <div class = "img-showcase">
+                <!-- /media/{{i.Hotal_images1}} -->
+                <img src = "{% if Hotal_id.promotions_images1 %}{{ Hotal_id.promotions_images1.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+                <img src = "{% if Hotal_id.promotions_images2 %}{{ Hotal_id.promotions_images2.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+                <img src = "{% if Hotal_id.promotions_images3 %}{{ Hotal_id.promotions_images3.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+                <img src = "{% if Hotal_id.promotions_images4 %}{{ Hotal_id.promotions_images4.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+              </div>
+            </div>
+            <div class = "img-select">
+                <div class = "img-item">
+                  <a href = "#" data-id = "1">
+                    <img src = "{% if Hotal_id.promotions_images1 %}{{ Hotal_id.promotions_images1.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+                </a>
+                </div>
+                <div class = "img-item">
+                  <a href = "#" data-id = "2">
+                    <img src = "{% if Hotal_id.promotions_images2 %}{{ Hotal_id.promotions_images2.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+                </a>
+                </div>
+                <div class = "img-item">
+                  <a href = "#" data-id = "3">
+                    <img src = "{% if Hotal_id.promotions_images3 %}{{ Hotal_id.promotions_images3.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+                </a>
+                </div>
+                <div class = "img-item">
+                  <a href = "#" data-id = "4">
+                    <img src = "{% if Hotal_id.promotions_images4 %}{{ Hotal_id.promotions_images4.url }}{% else %}https://via.placeholder.com/240x240x.jpg{% endif %}" alt = "Hotal Images">
+                </a>
+                </div>
+              </div>
+            </div>
+          <!-- card right -->
+          <div class = "product-content mt-6">
+                        <h5>Hotel Name : {{ Hotal_id.hotel_name }}</h5>
+
+            <div>
+              <div class="mb-2 text-warning">
+                <i ></i>
+                <i ></i>
+                <i ></i>
+                <i ></i>
+                <i ></i>
+            </div>
+            </div>
+      
+            <div class = "product-price">
+              <p class = ""></span></p>
+              <p class = "new-price"></p>
+            </div>
+
+            <div style="margin-bottom: 30px;">  
+              <h5><strong></h5>
+            </div>
+      
+            <div class = "product-detail">
+              <h4>Publish Date:  {{ Hotal_id.date }} </h4>
+              <p> 
+              </p>
+              <!-- <ul>
+                <li>Color: <span>Black</span></li>
+                <li>Available: <span>in stock</span></li>
+                <li>Category: <span>Shoes</span></li>
+                <li>Shipping Area: <span>All over the world</span></li>
+                <li>Shipping Fee: <span>Free</span></li>
+              </ul> -->
+            </div>
+      
+            
+      
+            
+          </div>
+        </div>
+      </div>
+          </div>
+        </div>
+      </div>
+</section>
+
+
+<script>
+    const imgs = document.querySelectorAll('.img-select a');
+const imgBtns = [...imgs];
+let imgId = 1;
+
+imgBtns.forEach((imgItem) => {
+    imgItem.addEventListener('click', (event) => {
+        event.preventDefault();
+        imgId = imgItem.dataset.id;
+        slideImage();
+    });
+});
+
+function slideImage(){
+    const displayWidth = document.querySelector('.img-showcase img:first-child').clientWidth;
+
+    document.querySelector('.img-showcase').style.transform = `translateX(${- (imgId - 1) * displayWidth}px)`;
+}
+
+window.addEventListener('resize', slideImage);
+</script>
+
+{% endblock body %}

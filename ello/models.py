@@ -25,19 +25,14 @@ class Add_Hotal(models.Model):
     Hotal_id = models.AutoField(primary_key=True) 
     Hotal_Name = models.CharField(max_length=50)
     hotal_new_price = models.CharField(max_length=255 ,default="")
+    hotal_new_price_premium = models.CharField(max_length=255 ,default="")
     hotal_discreption = models.TextField(max_length=500)
-    # Hotal_Location = models.CharField(max_length=200)
     Hotal_Location = models.CharField(max_length=200)
     Hotal_Latitude = models.FloatField()
     Hotal_Longitude = models.FloatField()
-    # Hotal_Location = SpatialLocationField(null=True)
     # hotel images
     Hotal_images1 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    # Hotal_images2 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    # Hotal_images3 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    # Hotal_images4= models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    # Hotal_images5 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
-    # garden images
+
     garden_images1 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
     garden_images2 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
     garden_images3 = models.ImageField(upload_to='hotalmedia', null=True, blank=True)
@@ -79,6 +74,37 @@ class Add_Hotal(models.Model):
 
     class Meta:
         ordering = ('-date',)
+
+class promotions(models.Model):
+    hotel_name=models.CharField(max_length=255)
+    promotions_images1 = models.ImageField(upload_to='promotion', null=True, blank=True)
+    promotions_images2 = models.ImageField(upload_to='promotion', null=True, blank=True)
+    promotions_images3 = models.ImageField(upload_to='promotion', null=True, blank=True)
+    promotions_images4 = models.ImageField(upload_to='promotion', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return str(self.hotel_name)
+class exclusive_partners(models.Model):
+    exclusive_partners_images1 = models.ImageField(upload_to='exclusive_partners', null=True, blank=True)
+    exclusive_partners_images2 = models.ImageField(upload_to='exclusive_partners', null=True, blank=True)
+    exclusive_partners_images3 = models.ImageField(upload_to='exclusive_partners', null=True, blank=True)
+    exclusive_partners_images4 = models.ImageField(upload_to='exclusive_partners', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.hotel_name
+class Holiday_packages(models.Model):
+    Holiday_packages_images1 = models.ImageField(upload_to='Holiday_packages', null=True, blank=True)
+    Holiday_packages_images2 = models.ImageField(upload_to='Holiday_packages', null=True, blank=True)
+    Holiday_packages_images3 = models.ImageField(upload_to='Holiday_packages', null=True, blank=True)
+    Holiday_packages_images4 = models.ImageField(upload_to='Holiday_packages', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.hotel_name
+
+
 
 
 

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect
-from ello.models import Add_Hotal
+from ello.models import Add_Hotal,promotions,exclusive_partners,Holiday_packages
 # Create your views here.
 from django.core.paginator import Paginator
 from django.contrib.auth import login, logout,authenticate
@@ -264,10 +264,6 @@ def add_hotel(request):
               Hotal_Latitude = request.POST.get('lat')
               Hotal_Longitude = request.POST.get('long')
               Hotal_images1 = request.FILES.get('img1')
-              # Hotal_images2 = request.FILES.get('img2')
-              # Hotal_images3 = request.FILES.get('img3')
-              # Hotal_images4= request.FILES.get('img4')
-              # Hotal_images5 = request.FILES.get('img5')
               # recettion images
               reception_images1 = request.FILES.get('reception_images1')
               reception_images2 = request.FILES.get('reception_images2')
@@ -369,21 +365,57 @@ def edit_hotal(request, id):
               # Hotal_id = request.POST.get('Hotal_id')
               Hotal_Name = request.POST.get('hotalname')
               hotal_new_price = request.POST.get('newprice')
+              hotal_new_price_premium = request.POST.get('hotal_new_price_premium')
               hotal_discreption = request.POST.get('dec')
               Hotal_Location = request.POST.get('loc')
               Hotal_Latitude = request.POST.get('lat')
               Hotal_Longitude = request.POST.get('long')
               Hotal_images1 = request.FILES.get('img1')
-              Hotal_images2 = request.FILES.get('img2')
-              Hotal_images3 = request.FILES.get('img3')
-              Hotal_images4= request.FILES.get('img4')
-              Hotal_images5 = request.FILES.get('img5')
+              # Hotal_images2 = request.FILES.get('img2')
+              # Hotal_images3 = request.FILES.get('img3')
+              # Hotal_images4= request.FILES.get('img4')
+              # Hotal_images5 = request.FILES.get('img5')
+              # recettion images
+              reception_images1 = request.FILES.get('reception_images1')
+              reception_images2 = request.FILES.get('reception_images2')
+              reception_images3 = request.FILES.get('reception_images3')
+              reception_images4= request.FILES.get('reception_images4')
+              reception_images5 = request.FILES.get('reception_images5')
+              # bedroom images
+              bedroom_images1 = request.FILES.get('bedroom_images1')
+              bedroom_images2 = request.FILES.get('bedroom_images2')
+              bedroom_images3 = request.FILES.get('bedroom_images3')
+              bedroom_images4= request.FILES.get('bedroom_images4')
+              bedroom_images5 = request.FILES.get('bedroom_images5')
+              # washroom images
+              washroom_images1 = request.FILES.get('washroom_images1')
+              washroom_images2 = request.FILES.get('washroom_images2')
+              washroom_images3 = request.FILES.get('washroom_images3')
+              washroom_images4= request.FILES.get('washroom_images4')
+              washroom_images5 = request.FILES.get('washroom_images5')
+              # exterior images
+              Exterior_images1 = request.FILES.get('Exterior_images1')
+              Exterior_images2 = request.FILES.get('Exterior_images2')
+              Exterior_images3 = request.FILES.get('Exterior_images3')
+              Exterior_images4= request.FILES.get('Exterior_images4')
+              Exterior_images5 = request.FILES.get('Exterior_images5')
+              # garden images
+              garden_images1 = request.FILES.get('garden_images1')
+              garden_images2 = request.FILES.get('garden_images2')
+              garden_images3 = request.FILES.get('garden_images3')
+              garden_images4= request.FILES.get('garden_images4')
+              garden_images5 = request.FILES.get('garden_images5')
               date = request.POST.get('datetime.today()')
 
-              data = Add_Hotal(Hotal_id=id, Hotal_Name=Hotal_Name, hotal_new_price=hotal_new_price,
-              hotal_discreption = hotal_discreption, Hotal_Location=Hotal_Location,Hotal_Latitude=Hotal_Latitude, Hotal_Longitude=Hotal_Longitude, Hotal_images1=Hotal_images1, Hotal_images2=Hotal_images2,
-              Hotal_images3=Hotal_images3, Hotal_images4=Hotal_images4, Hotal_images5=Hotal_images5, date=date)
-       
+              data = Add_Hotal(Hote_id=id,Hotal_Name=Hotal_Name, hotal_new_price=hotal_new_price,hotal_new_price_premium=hotal_new_price_premium,
+              hotal_discreption = hotal_discreption, Hotal_Location=Hotal_Location, Hotal_Latitude=Hotal_Latitude, Hotal_Longitude=Hotal_Longitude, Hotal_images1=Hotal_images1,
+                     date=date,
+              reception_images1=reception_images1,reception_images2=reception_images2,reception_images3=reception_images3,reception_images4=reception_images4,reception_images5=reception_images5,
+              bedroom_images1=bedroom_images1,bedroom_images2=bedroom_images2,bedroom_images3=bedroom_images3,bedroom_images4=bedroom_images4,bedroom_images5=bedroom_images5,
+              washroom_images1=washroom_images1,washroom_images2=washroom_images2,washroom_images3=washroom_images3,washroom_images4=washroom_images4,washroom_images5=washroom_images5,
+              Exterior_images1=Exterior_images1,Exterior_images2=Exterior_images2,Exterior_images3=Exterior_images3,Exterior_images4=Exterior_images4,Exterior_images5=Exterior_images5,
+              garden_images1=garden_images1,garden_images2=garden_images2,garden_images3=garden_images3,garden_images4=garden_images4,garden_images5=garden_images5, 
+              )
               data.save()
        # return render(request, "update_hotal.html")
        else:
@@ -395,7 +427,44 @@ def offers_for_you(request):
        return render(request,'offers_for_you.html')
 def holiday_packages(request):
        return render(request,'holiday_packages.html')
-def promotions(request):
+def promotions_save(request):
+       if request.method=="POST":
+              hotel_name=request.POST.get('hotel_name')
+              promotions_images1=request.FILES.get('promotions_images1')
+              promotions_images2=request.FILES.get('promotions_images2')
+              promotions_images3=request.FILES.get('promotions_images3')
+              promotions_images4=request.FILES.get('promotions_images4')
+              data=promotions(hotel_name=hotel_name,promotions_images1=promotions_images1,promotions_images2=promotions_images2,promotions_images3=promotions_images3,promotions_images4=promotions_images4)
+              data.save()
+              messages.success(request,'Promotion save sucessfully')
+              return render(request,'promotions.html')
        return render(request,'promotions.html')
+
+def promotion_list(request):
+       data=promotions.objects.all()
+       return render(request,'promotion_list.html',{'data':data})
+
+def view_promotion(request,id):
+       Hotal_id=promotions.objects.get(pk=id)
+       return render(request,'view_promotion.html',{'Hotal_id':Hotal_id})
+def edit_promotion(request,id):
+       data=promotions.objects.get(pk=id)
+       return render(request,'edit_promotion.html',{'data':data})
+def update_promotion(request):
+       if request.method=="POST":
+              id=request.POST.get('id')
+              hotel_name=request.POST.get('hotel_name')
+              promotions_images1=request.FILES.get('promotions_images1')
+              promotions_images2=request.FILES.get('promotions_images2')
+              promotions_images3=request.FILES.get('promotions_images3')
+              promotions_images4=request.FILES.get('promotions_images4')
+              data=promotions(id=id,hotel_name=hotel_name,promotions_images1=promotions_images1,promotions_images2=promotions_images2,promotions_images3=promotions_images3,promotions_images4=promotions_images4)
+              print(data)
+              data.save()
+              return render(request,'promotion_list.html')
+       return render(request,'edit_promotion.html')
+
+
+
 def exclusive_partners(request):
        return render(request,'exclusive_partners.html')

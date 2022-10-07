@@ -19,7 +19,11 @@ urlpatterns = [
 
     path('hotal_view/<int:id>', views.hotal_view, name="hotal_view"),
     path('offers_for_you',views.offers_for_you, name="offers_for_you"),
-    path('promotions',views.promotions, name="promotions"),
+    path('promotions_save',views.promotions_save, name="promotions_save"),
+    path('promotion_list',views.promotion_list, name="promotion_list"),
+    path('view_promotion/<int:id>',views.view_promotion, name="view_promotion"),
+    path('edit_promotion/<int:id>',views.edit_promotion, name="edit_promotion"),
+    path('update_promotion',views.update_promotion, name="update_promotion"),
     path('exclusive_partners',views.exclusive_partners, name="exclusive_partners"),
     path('holiday_packages',views.holiday_packages, name="holiday_packages"),
 
@@ -32,7 +36,10 @@ urlpatterns = [
 
 
     # api urls
-    path("hotel",ApiViews.hotel,name='hotel')
+    path("hotel",ApiViews.hotel,name='hotel'),
+
+    #add single Hotel
+    path("add_single_hotel/<int:Hotal_id>",ApiViews.add_single_hotel,name='add_single_hotel')
 
 
 
