@@ -85,6 +85,7 @@ class promotions(models.Model):
 
     def __str__(self):
         return str(self.hotel_name)
+
 class exclusive_partners(models.Model):
     exclusive_partners_images1 = models.ImageField(upload_to='exclusive_partners', null=True, blank=True)
     exclusive_partners_images2 = models.ImageField(upload_to='exclusive_partners', null=True, blank=True)
@@ -92,8 +93,7 @@ class exclusive_partners(models.Model):
     exclusive_partners_images4 = models.ImageField(upload_to='exclusive_partners', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return self.hotel_name
+
 class Holiday_packages(models.Model):
     Holiday_packages_images1 = models.ImageField(upload_to='Holiday_packages', null=True, blank=True)
     Holiday_packages_images2 = models.ImageField(upload_to='Holiday_packages', null=True, blank=True)
@@ -101,8 +101,14 @@ class Holiday_packages(models.Model):
     Holiday_packages_images4 = models.ImageField(upload_to='Holiday_packages', null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return self.hotel_name
+
+class whats_new(models.Model):
+    whats_new_images1 = models.ImageField(upload_to='whats_new', null=True, blank=True)
+    whats_new_images2 = models.ImageField(upload_to='whats_new', null=True, blank=True)
+    whats_new_images3 = models.ImageField(upload_to='whats_new', null=True, blank=True)
+    whats_new_images4 = models.ImageField(upload_to='whats_new', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
 
 
 

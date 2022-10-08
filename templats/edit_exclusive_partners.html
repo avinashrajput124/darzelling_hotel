@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
 
-{% block title%}Exclusive Partners{% endblock title %}
+{% block title%}Promotions{% endblock title %}
 
 
 {% block body %}
+
 <style>
 
+.form-control{
 
-
-
+    width:60%;
+}
 #submit{
 
 
@@ -43,7 +45,7 @@
 
                 <div class="row">
                     <div class="col-xl-12 col-md-12">
-                        <form method="post" class="card" enctype="multipart/form-data">
+                        <form method="post" class="card" action="/update_exclusive" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="card-header">
                                 <h3 class="card-title">Exclusive Partners</h3>
@@ -51,25 +53,35 @@
                             <div class=" card-body">
                                 <div class="row">
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file" name="exclusive_partners_images1"class="dropify" data-bs-height="180" />
+                                        <input type="file" name="exclusive_partners_images1"  value="{{data.exclusive_partners_images1}}" data-default-file="/media/{{data.exclusive_partners_images1}}" class="dropify" data-bs-height="180" />
                                     </div>
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file" name="exclusive_partners_images2" class="dropify" data-bs-height="180" />
+                                        <input type="file"  name="exclusive_partners_images2" value="{{data.exclusive_partners_images2}}" data-default-file="/media/{{data.exclusive_partners_images2}}" class="dropify" data-bs-height="180" />
                                     </div>
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file" name="exclusive_partners_images3" class="dropify" data-bs-height="180" />
+                                        <input type="file"  name="exclusive_partners_images3" value="{{data.exclusive_partners_images3}}" data-default-file="/media/{{data.exclusive_partners_images3}}"  class="dropify" data-bs-height="180" />
                                     </div>
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file" name="exclusive_partners_images4" class="dropify" data-bs-height="180" />
+                                        <input   name="id" value="{{data.id}}" hidden>
+                                        <input type="file"  name="exclusive_partners_images4" value="{{data.exclusive_partners_images4}}" data-default-file="/media/{{data.exclusive_partners_images4}}" class="dropify" data-bs-height="180" />
                                     </div>
                                 </div>
-                               
+                              
+                                
                                 
 
 
                             </div>
-                              <div id="submit" class="col-lg-3 mb-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <!-- <div class="row mb-4">
+                                <label class="col-md-3 form-label" style="display:flex; justify-content:center;">Hotel name :</label>
+                                <div class="col-md-9">
+                                    <input   name="id" value="{{data.id}}" hidden>
+
+                                    <input type="text"  name="hotel_name" id="hotalname" required class="form-control" value="{{data.hotel_name}}" placeholder="Hotal Name" required>
+                                </div>
+                            </div> -->
+                              <div id="submit"class="col-lg-3 mb-4">
+                                <input type="submit" value="update" class="btn btn-primary">
                             </div>
                             </div>
                         </form>

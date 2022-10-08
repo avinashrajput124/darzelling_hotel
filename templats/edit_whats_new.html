@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 
 
-{% block title%}Holidays Packages{% endblock title %}
+{% block title%}Edit Whats New{% endblock title %}
 
 
 {% block body %}
 
 <style>
 
-    #submit{
-    
-    
-        display: flex;
-        justify-content: flex-end;
-        align-content: space-between;
-        align-items: flex-end;
-        max-width: 95%;
-    }
-    
-    </style>
+.form-control{
+
+    width:60%;
+}
+#submit{
+
+
+    display: flex;
+    justify-content: flex-end;
+    align-content: space-between;
+    align-items: flex-end;
+    max-width: 95%;
+}
+
+</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -41,29 +45,32 @@
 
                 <div class="row">
                     <div class="col-xl-12 col-md-12">
-                        <form method="post" class="card" enctype="multipart/form-data">
+                        <form method="post" class="card" action="/update_whats_new" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="card-header">
-                                <h3 class="card-title">Holidays Packages</h3>
+                                <h3 class="card-title">Edit Whats New</h3>
                             </div>
                             <div class=" card-body">
                                 <div class="row">
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file"  name="Holiday_packages_images1" class="dropify" data-bs-height="180" />
+                                        <input type="file" name="whats_new_images1"  src="{{data.whats_new_images1}}" data-default-file="/media/{{data.whats_new_images1}}" class="dropify" data-bs-height="180" />
                                     </div>
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file" name="Holiday_packages_images2" class="dropify" data-bs-height="180" />
+                                        <input type="file"  name="whats_new_images2" src="{{data.whats_new_images2}}" data-default-file="/media/{{data.whats_new_images2}}" class="dropify" data-bs-height="180" />
                                     </div>
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file" name="Holiday_packages_images3" class="dropify" data-bs-height="180" />
+                                        <input type="file"  name="whats_new_images3" src="{{data.whats_new_images3}}" data-default-file="/media/{{data.whats_new_images3}}"  class="dropify" data-bs-height="180" />
                                     </div>
                                     <div class="col-lg-3 col-sm-12 mb-4 mb-lg-0 ">
-                                        <input type="file" name="Holiday_packages_images4" class="dropify" data-bs-height="180" />
+                                        <input type="file"  name="whats_new_images4" src="{{data.whats_new_images4}}" data-default-file="/media/{{data.whats_new_images4}}" class="dropify" data-bs-height="180" />
+                                        <input   name="id" value="{{data.id}}" hidden>
+
                                     </div>
                                 </div>
                             </div>
-                              <div id="submit" class="col-lg-3 mb-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                      
+                              <div id="submit"class="col-lg-3 mb-4">
+                                <input type="submit" value="update" class="btn btn-primary">
                             </div>
                             </div>
                         </form>

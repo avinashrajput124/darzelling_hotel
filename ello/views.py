@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect
-from ello.models import Add_Hotal,promotions,exclusive_partners,Holiday_packages
+from ello.models import Add_Hotal,promotions,exclusive_partners,Holiday_packages, whats_new
 # Create your views here.
 from django.core.paginator import Paginator
 from django.contrib.auth import login, logout,authenticate
@@ -219,9 +219,6 @@ def hotel_list_filter(request):
                      hello = Add_Hotal.objects.all()
               else:
                      hello = str(hello)
-
-              
-
               if hello == 'newfirst':
                      hotal = Add_Hotal.objects.all().order_by("-Hotal_id")
               if hello == 'oldfirst':
@@ -345,24 +342,15 @@ def delete_hotal(request, id):
 
 @admin_required()
 def update_hotal(request, id):
-
        if request.method=="POST":
               update = Add_Hotal.objects.all()
               Hotal_id = Add_Hotal.objects.get(pk=id)
-
-              
               cotext = {'Hotal_id':Hotal_id, 'update':update}
-
               return render(request, 'update_hotal.html', cotext)
-
-
-
-
 @admin_required()
 def edit_hotal(request, id):
        print(request.POST)
        if request.method == "POST":
-              # Hotal_id = request.POST.get('Hotal_id')
               Hotal_Name = request.POST.get('hotalname')
               hotal_new_price = request.POST.get('newprice')
               hotal_new_price_premium = request.POST.get('hotal_new_price_premium')
@@ -371,10 +359,6 @@ def edit_hotal(request, id):
               Hotal_Latitude = request.POST.get('lat')
               Hotal_Longitude = request.POST.get('long')
               Hotal_images1 = request.FILES.get('img1')
-              # Hotal_images2 = request.FILES.get('img2')
-              # Hotal_images3 = request.FILES.get('img3')
-              # Hotal_images4= request.FILES.get('img4')
-              # Hotal_images5 = request.FILES.get('img5')
               # recettion images
               reception_images1 = request.FILES.get('reception_images1')
               reception_images2 = request.FILES.get('reception_images2')
@@ -425,8 +409,8 @@ def edit_hotal(request, id):
 
 def offers_for_you(request):
        return render(request,'offers_for_you.html')
-def holiday_packages(request):
-       return render(request,'holiday_packages.html')
+
+# Promotions------------------------------
 def promotions_save(request):
        if request.method=="POST":
               hotel_name=request.POST.get('hotel_name')
@@ -450,21 +434,173 @@ def view_promotion(request,id):
 def edit_promotion(request,id):
        data=promotions.objects.get(pk=id)
        return render(request,'edit_promotion.html',{'data':data})
+
+def promotion_list_filter(request):
+       x = promotions.objects.all()
+       tottal_hotal = len(x)
+       hello = request.GET.get('resently_added')
+       if request.method=="GET":
+              if hello is None:
+                     hello = promotions.objects.all()
+              else:
+                     hello = str(hello)
+              if hello == 'newfirst':
+                     hotal = promotions.objects.all().order_by("-id")
+              if hello == 'oldfirst':
+                     hotal = promotions.objects.all().order_by("id")
+              elif hello == 'a_to_z':
+                     hotal = promotions.objects.all().order_by('hotal_name')
+              elif hello == 'z_to_a':
+                     hotal = promotions.objects.all().order_by('-hotal_name')
+              else:
+                      hotal = Add_Hotal.objects.all()
+
+              context = {'hotal' : hotal,'tottal_hotal':tottal_hotal}
+       return render(request, "hotel_list_filter.html", context)
 def update_promotion(request):
        if request.method=="POST":
               id=request.POST.get('id')
+              if request.FILES.get('promotions_images1') is not None:
+                     promotions.promotions_images1=request.FILES.get('promotions_images1')
+              else:
+                     promotions.promotions_images1=promotions.promotions_images1
+
               hotel_name=request.POST.get('hotel_name')
-              promotions_images1=request.FILES.get('promotions_images1')
               promotions_images2=request.FILES.get('promotions_images2')
               promotions_images3=request.FILES.get('promotions_images3')
               promotions_images4=request.FILES.get('promotions_images4')
-              data=promotions(id=id,hotel_name=hotel_name,promotions_images1=promotions_images1,promotions_images2=promotions_images2,promotions_images3=promotions_images3,promotions_images4=promotions_images4)
+              data=promotions(id=id,hotel_name=hotel_name,promotions_images2=promotions_images2,promotions_images3=promotions_images3,promotions_images4=promotions_images4)
               print(data)
               data.save()
               return render(request,'promotion_list.html')
        return render(request,'edit_promotion.html')
+def distroy(request,id):
+       data=promotions.objects.get(pk=id)
+       data.delete()
+       return redirect('promotion_list')
 
 
+#  Exclusive partners-----------------------
 
-def exclusive_partners(request):
+
+def exclusive_partners_save(request):
+       if request.method=="POST":
+              exclusive_partners_images1=request.FILES.get('exclusive_partners_images1')
+              exclusive_partners_images2=request.FILES.get('exclusive_partners_images2')
+              exclusive_partners_images3=request.FILES.get('exclusive_partners_images3')
+              exclusive_partners_images4=request.FILES.get('exclusive_partners_images4')
+              data=exclusive_partners(exclusive_partners_images1=exclusive_partners_images1,exclusive_partners_images2=exclusive_partners_images2,exclusive_partners_images3=exclusive_partners_images3,exclusive_partners_images4=exclusive_partners_images4)
+              data.save()
+              return render(request,'exclusive_partners.html')
        return render(request,'exclusive_partners.html')
+
+def exclusive_partners_list(request):
+       data=exclusive_partners.objects.all()
+       return render(request,'list_exclusive_partners.html',{'data':data})
+
+
+def view_exclusive(request,id):
+       Hotal_id=exclusive_partners.objects.get(pk=id)
+       return render(request,'view_exclusive.html',{'Hotal_id':Hotal_id})
+def edit_exclusive(request,id):
+       data=exclusive_partners.objects.get(pk=id)
+       return render(request,'edit_exclusive_partners.html',{'data':data})
+
+def distroy_exclusive_list(request,id):
+       data=exclusive_partners.objects.get(pk=id)
+       data.delete()
+       return redirect('promotion_list')
+
+def update_exclusive(request):
+       if request.method=="POST":
+              id=request.POST.get('id')
+              exclusive_partners_images1=request.FILES.get('exclusive_partners_images1')
+              exclusive_partners_images2=request.FILES.get('exclusive_partners_images2')
+              exclusive_partners_images3=request.FILES.get('exclusive_partners_images3')
+              exclusive_partners_images4=request.FILES.get('exclusive_partners_images4')
+              data=exclusive_partners(id=id,exclusive_partners_images1=exclusive_partners_images1,exclusive_partners_images2=exclusive_partners_images2,exclusive_partners_images3=exclusive_partners_images3,exclusive_partners_images4=exclusive_partners_images4)
+              data.save()
+              return redirect('exclusive_partners_list')
+       return render(request,'edit_exclusive_partners.html')
+
+
+# holiday Packages------------------------------
+
+def holiday_packages_save(request):
+       if request.method=="POST":
+              Holiday_packages_images1=request.FILES.get('Holiday_packages_images1')
+              Holiday_packages_images2=request.FILES.get('Holiday_packages_images2')
+              Holiday_packages_images3=request.FILES.get('Holiday_packages_images3')
+              Holiday_packages_images4=request.FILES.get('Holiday_packages_images4')
+              data=Holiday_packages(Holiday_packages_images1=Holiday_packages_images1,Holiday_packages_images2=Holiday_packages_images2,Holiday_packages_images3=Holiday_packages_images3,Holiday_packages_images4=Holiday_packages_images4)
+              data.save()
+              return render(request,'holiday_packages.html')
+       return render(request,'holiday_packages.html')
+
+def list_holiday_packages(request):
+       data=Holiday_packages.objects.all()
+       return render(request,'list_holiday_packages.html',{'data':data})
+
+def view_holiday_packages(request,id):
+       Hotal_id=Holiday_packages.objects.get(pk=id)
+       return render(request,'view_holiday_packages.html',{'Hotal_id':Hotal_id})
+
+def edit_holiday_packages(request,id):
+       data=Holiday_packages.objects.get(pk=id)
+       return render(request,'edit_holiday_packages.html',{'data':data})
+
+def distroy_holiday_packages(request,id):
+       data=Holiday_packages.objects.get(pk=id)
+       data.delete()
+       return redirect('list_holiday_packages')
+
+
+def update_holiday_packages(request):
+       if request.method=="POST":
+              id=request.POST.get('id')
+              Holiday_packages_images1=request.FILES.get('Holiday_packages_images1')
+              Holiday_packages_images2=request.FILES.get('Holiday_packages_images2')
+              Holiday_packages_images3=request.FILES.get('Holiday_packages_images3')
+              Holiday_packages_images4=request.FILES.get('Holiday_packages_images4')
+              data=Holiday_packages(id=id,Holiday_packages_images1=Holiday_packages_images1,Holiday_packages_images2=Holiday_packages_images2,Holiday_packages_images3=Holiday_packages_images3,Holiday_packages_images4=Holiday_packages_images4)
+              data.save()
+              return redirect('list_holiday_packages')
+       return redirect('edit_holiday_packages')
+
+
+#  whats new-----------------------------
+
+def whats_new_save(request):
+       if request.method=="POST":
+              whats_new_images1=request.FILES.get('whats_new_images1')
+              whats_new_images2=request.FILES.get('whats_new_images2')
+              whats_new_images3=request.FILES.get('whats_new_images3')
+              whats_new_images4=request.FILES.get('whats_new_images4')
+              data=whats_new(whats_new_images1=whats_new_images1,whats_new_images2=whats_new_images2,whats_new_images3=whats_new_images3,whats_new_images4=whats_new_images4)
+              data.save()
+              return render(request,'whats_new_save.html')
+       return render(request,'whats_new_save.html')
+
+def list_whats_new(request):
+       data=whats_new.objects.all()
+       return render(request,'list_whats_new.html',{'data':data})
+
+
+def view_whats_new(request,id):
+       Hotal_id=whats_new.objects.get(pk=id)
+       return render(request,'view_whats_new.html',{'Hotal_id':Hotal_id})
+def edit_whats_new(request,id):
+       data=whats_new.objects.get(pk=id)
+       return render(request,'edit_whats_new.html',{'data':data})
+def update_whats_new(request):
+       if request.method=="POST":
+              id=request.POST.get('id')
+              whats_new_images1=request.FILES.get('whats_new_images1')
+              whats_new_images2=request.FILES.get('whats_new_images2')
+              whats_new_images3=request.FILES.get('whats_new_images3')
+              whats_new_images4=request.FILES.get('whats_new_images4')
+              data=whats_new(id=id,whats_new_images1=whats_new_images1,whats_new_images2=whats_new_images2,whats_new_images3=whats_new_images3,whats_new_images4=whats_new_images4)
+              data.save()
+              return redirect('list_whats_new')
+       return redirect('edit_holiday_packages')
+
